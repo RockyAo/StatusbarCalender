@@ -3,29 +3,39 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A10000001C0000000000001 /* StatusbarCalendarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000001C0000000000001 /* StatusbarCalendarApp.swift */; };
-		A10000001C0000000000002 /* ClockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000001C0000000000002 /* ClockManager.swift */; };
-		A10000001C0000000000003 /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000001C0000000000003 /* MenuBarView.swift */; };
-		A10000001C0000000000004 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000001C0000000000004 /* SettingsView.swift */; };
-		A10000001C0000000000005 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A20000001C0000000000005 /* Assets.xcassets */; };
+		1A1A1A1A1A1A1A1A1A1A1A1A /* StatusbarCalendarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2A2A2A2A2A2A2A2A2A2A2A /* StatusbarCalendarApp.swift */; };
+		1A1A1A1A1A1A1A1A1A1A1A1B /* ClockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2A2A2A2A2A2A2A2A2A2A2B /* ClockManager.swift */; };
+		1A1A1A1A1A1A1A1A1A1A1A1C /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2A2A2A2A2A2A2A2A2A2A2C /* MenuBarView.swift */; };
+		1A1A1A1A1A1A1A1A1A1A1A1D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2A2A2A2A2A2A2A2A2A2A2D /* SettingsView.swift */; };
+		1A1A1A1A1A1A1A1A1A1A1A1E /* LunarCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2A2A2A2A2A2A2A2A2A2A2E /* LunarCalendar.swift */; };
+		1A1A1A1A1A1A1A1A1A1A1A1F /* DayStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2A2A2A2A2A2A2A2A2A2A2F /* DayStatus.swift */; };
+		1A1A1A1A1A1A1A1A1A1A1A20 /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2A2A2A2A2A2A2A2A2A2A20 /* CalendarManager.swift */; };
+		1A1A1A1A1A1A1A1A1A1A1A21 /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2A2A2A2A2A2A2A2A2A2A21 /* DayCell.swift */; };
+		1A1A1A1A1A1A1A1A1A1A1A22 /* CalendarGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2A2A2A2A2A2A2A2A2A2A22 /* CalendarGridView.swift */; };
+		1A1A1A1A1A1A1A1A1A1A1A23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A2A2A2A2A2A2A2A2A2A2A23 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A30000001C0000000000001 /* StatusbarCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StatusbarCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A20000001C0000000000001 /* StatusbarCalendarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusbarCalendarApp.swift; sourceTree = "<group>"; };
-		A20000001C0000000000002 /* ClockManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockManager.swift; sourceTree = "<group>"; };
-		A20000001C0000000000003 /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
-		A20000001C0000000000004 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		A20000001C0000000000005 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A20000001C0000000000006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A0A0A0A0A0A0A0A0A0A0A0A /* StatusbarCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StatusbarCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A2A2A2A2A2A2A2A2A2A2A2A /* StatusbarCalendarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusbarCalendarApp.swift; sourceTree = "<group>"; };
+		2A2A2A2A2A2A2A2A2A2A2A2B /* ClockManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockManager.swift; sourceTree = "<group>"; };
+		2A2A2A2A2A2A2A2A2A2A2A2C /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
+		2A2A2A2A2A2A2A2A2A2A2A2D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		2A2A2A2A2A2A2A2A2A2A2A2E /* LunarCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarCalendar.swift; sourceTree = "<group>"; };
+		2A2A2A2A2A2A2A2A2A2A2A2F /* DayStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayStatus.swift; sourceTree = "<group>"; };
+		2A2A2A2A2A2A2A2A2A2A2A20 /* CalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
+		2A2A2A2A2A2A2A2A2A2A2A21 /* DayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
+		2A2A2A2A2A2A2A2A2A2A2A22 /* CalendarGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarGridView.swift; sourceTree = "<group>"; };
+		2A2A2A2A2A2A2A2A2A2A2A23 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2A2A2A2A2A2A2A2A2A2A2A24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A40000001C0000000000001 /* Frameworks */ = {
+		3A3A3A3A3A3A3A3A3A3A3A3A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -35,31 +45,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A50000001C0000000000001 = {
+		4A4A4A4A4A4A4A4A4A4A4A4A = {
 			isa = PBXGroup;
 			children = (
-				A50000001C0000000000002 /* StatusbarCalendar */,
-				A50000001C0000000000003 /* Products */,
+				5A5A5A5A5A5A5A5A5A5A5A5A /* StatusbarCalendar */,
+				6A6A6A6A6A6A6A6A6A6A6A6A /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		A50000001C0000000000002 /* StatusbarCalendar */ = {
+		5A5A5A5A5A5A5A5A5A5A5A5A /* StatusbarCalendar */ = {
 			isa = PBXGroup;
 			children = (
-				A20000001C0000000000001 /* StatusbarCalendarApp.swift */,
-				A20000001C0000000000002 /* ClockManager.swift */,
-				A20000001C0000000000003 /* MenuBarView.swift */,
-				A20000001C0000000000004 /* SettingsView.swift */,
-				A20000001C0000000000005 /* Assets.xcassets */,
-				A20000001C0000000000006 /* Info.plist */,
+				2A2A2A2A2A2A2A2A2A2A2A2A /* StatusbarCalendarApp.swift */,
+				2A2A2A2A2A2A2A2A2A2A2A2B /* ClockManager.swift */,
+				2A2A2A2A2A2A2A2A2A2A2A20 /* CalendarManager.swift */,
+				2A2A2A2A2A2A2A2A2A2A2A2E /* LunarCalendar.swift */,
+				2A2A2A2A2A2A2A2A2A2A2A2F /* DayStatus.swift */,
+				2A2A2A2A2A2A2A2A2A2A2A2C /* MenuBarView.swift */,
+				2A2A2A2A2A2A2A2A2A2A2A22 /* CalendarGridView.swift */,
+				2A2A2A2A2A2A2A2A2A2A2A21 /* DayCell.swift */,
+				2A2A2A2A2A2A2A2A2A2A2A2D /* SettingsView.swift */,
+				2A2A2A2A2A2A2A2A2A2A2A23 /* Assets.xcassets */,
+				2A2A2A2A2A2A2A2A2A2A2A24 /* Info.plist */,
 			);
 			path = StatusbarCalendar;
 			sourceTree = "<group>";
 		};
-		A50000001C0000000000003 /* Products */ = {
+		6A6A6A6A6A6A6A6A6A6A6A6A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A30000001C0000000000001 /* StatusbarCalendar.app */,
+				0A0A0A0A0A0A0A0A0A0A0A0A /* StatusbarCalendar.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -67,13 +82,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A60000001C0000000000001 /* StatusbarCalendar */ = {
+		7A7A7A7A7A7A7A7A7A7A7A7A /* StatusbarCalendar */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A70000001C0000000000001 /* Build configuration list for PBXNativeTarget "StatusbarCalendar" */;
+			buildConfigurationList = 8A8A8A8A8A8A8A8A8A8A8A8A /* Build configuration list for PBXNativeTarget "StatusbarCalendar" */;
 			buildPhases = (
-				A80000001C0000000000001 /* Sources */,
-				A40000001C0000000000001 /* Frameworks */,
-				A90000001C0000000000001 /* Resources */,
+				9A9A9A9A9A9A9A9A9A9A9A9A /* Sources */,
+				3A3A3A3A3A3A3A3A3A3A3A3A /* Frameworks */,
+				AAAAAAAAAAAAAAAAAAAAAAA /* Resources */,
 			);
 			buildRules = (
 			);
@@ -81,70 +96,74 @@
 			);
 			name = StatusbarCalendar;
 			productName = StatusbarCalendar;
-			productReference = A30000001C0000000000001 /* StatusbarCalendar.app */;
+			productReference = 0A0A0A0A0A0A0A0A0A0A0A0A /* StatusbarCalendar.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		A50000001C0000000000004 /* Project object */ = {
+		BABABABABABABABABABABABA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1600;
-				LastUpgradeCheck = 1600;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
-					A60000001C0000000000001 = {
-						CreatedOnToolsVersion = 16.0;
+					7A7A7A7A7A7A7A7A7A7A7A7A = {
+						CreatedOnToolsVersion = 15.4;
 					};
 				};
 			};
-			buildConfigurationList = A70000001C0000000000002 /* Build configuration list for PBXProject "StatusbarCalendar" */;
-			compatibilityVersion = "Xcode 15.0";
-			developmentRegion = zh-Hans;
+			buildConfigurationList = CACACACACACACACACACACACA /* Build configuration list for PBXProject "StatusbarCalendar" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
-				"zh-Hans",
 			);
-			mainGroup = A50000001C0000000000001;
-			productRefGroup = A50000001C0000000000003 /* Products */;
+			mainGroup = 4A4A4A4A4A4A4A4A4A4A4A4A;
+			productRefGroup = 6A6A6A6A6A6A6A6A6A6A6A6A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A60000001C0000000000001 /* StatusbarCalendar */,
+				7A7A7A7A7A7A7A7A7A7A7A7A /* StatusbarCalendar */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A90000001C0000000000001 /* Resources */ = {
+		AAAAAAAAAAAAAAAAAAAAAAA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A10000001C0000000000005 /* Assets.xcassets in Resources */,
+				1A1A1A1A1A1A1A1A1A1A1A23 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A80000001C0000000000001 /* Sources */ = {
+		9A9A9A9A9A9A9A9A9A9A9A9A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A10000001C0000000000001 /* StatusbarCalendarApp.swift in Sources */,
-				A10000001C0000000000002 /* ClockManager.swift in Sources */,
-				A10000001C0000000000003 /* MenuBarView.swift in Sources */,
-				A10000001C0000000000004 /* SettingsView.swift in Sources */,
+				1A1A1A1A1A1A1A1A1A1A1A1A /* StatusbarCalendarApp.swift in Sources */,
+				1A1A1A1A1A1A1A1A1A1A1A1B /* ClockManager.swift in Sources */,
+				1A1A1A1A1A1A1A1A1A1A1A20 /* CalendarManager.swift in Sources */,
+				1A1A1A1A1A1A1A1A1A1A1A1E /* LunarCalendar.swift in Sources */,
+				1A1A1A1A1A1A1A1A1A1A1A1F /* DayStatus.swift in Sources */,
+				1A1A1A1A1A1A1A1A1A1A1A1C /* MenuBarView.swift in Sources */,
+				1A1A1A1A1A1A1A1A1A1A1A22 /* CalendarGridView.swift in Sources */,
+				1A1A1A1A1A1A1A1A1A1A1A21 /* DayCell.swift in Sources */,
+				1A1A1A1A1A1A1A1A1A1A1A1D /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		A70000001C0000000000003 /* Debug */ = {
+		DADADADADADADADADADADADA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -208,7 +227,7 @@
 			};
 			name = Debug;
 		};
-		A70000001C0000000000004 /* Release */ = {
+		EAEAEAEAEAEAEAEAEAEAEAEA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -264,12 +283,11 @@
 			};
 			name = Release;
 		};
-		A70000001C0000000000005 /* Debug */ = {
+		FAFAFAFAFAFAFAFAFAFAFAFA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -294,12 +312,11 @@
 			};
 			name = Debug;
 		};
-		A70000001C0000000000006 /* Release */ = {
+		FBFBFBFBFBFBFBFBFBFBFBFB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -327,25 +344,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A70000001C0000000000001 /* Build configuration list for PBXNativeTarget "StatusbarCalendar" */ = {
+		8A8A8A8A8A8A8A8A8A8A8A8A /* Build configuration list for PBXNativeTarget "StatusbarCalendar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A70000001C0000000000005 /* Debug */,
-				A70000001C0000000000006 /* Release */,
+				FAFAFAFAFAFAFAFAFAFAFAFA /* Debug */,
+				FBFBFBFBFBFBFBFBFBFBFBFB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A70000001C0000000000002 /* Build configuration list for PBXProject "StatusbarCalendar" */ = {
+		CACACACACACACACACACACACA /* Build configuration list for PBXProject "StatusbarCalendar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A70000001C0000000000003 /* Debug */,
-				A70000001C0000000000004 /* Release */,
+				DADADADADADADADADADADADA /* Debug */,
+				EAEAEAEAEAEAEAEAEAEAEAEA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = A50000001C0000000000004 /* Project object */;
+	rootObject = BABABABABABABABABABABABA /* Project object */;
 }

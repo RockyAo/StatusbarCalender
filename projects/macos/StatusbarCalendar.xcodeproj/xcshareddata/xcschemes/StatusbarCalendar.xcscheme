@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1600"
+   LastUpgradeVersion = "1540"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,7 +15,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A60000001C0000000000001"
+               BlueprintIdentifier = "7A7A7A7A7A7A7A7A7A7A7A7A"
                BuildableName = "StatusbarCalendar.app"
                BlueprintName = "StatusbarCalendar"
                ReferencedContainer = "container:StatusbarCalendar.xcodeproj">
@@ -44,7 +44,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A60000001C0000000000001"
+            BlueprintIdentifier = "7A7A7A7A7A7A7A7A7A7A7A7A"
             BuildableName = "StatusbarCalendar.app"
             BlueprintName = "StatusbarCalendar"
             ReferencedContainer = "container:StatusbarCalendar.xcodeproj">
@@ -61,7 +61,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A60000001C0000000000001"
+            BlueprintIdentifier = "7A7A7A7A7A7A7A7A7A7A7A7A"
             BuildableName = "StatusbarCalendar.app"
             BlueprintName = "StatusbarCalendar"
             ReferencedContainer = "container:StatusbarCalendar.xcodeproj">
