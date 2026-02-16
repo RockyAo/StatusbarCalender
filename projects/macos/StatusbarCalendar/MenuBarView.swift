@@ -11,7 +11,7 @@ struct MenuBarView: View {
     @Bindable var clockManager: ClockManager
     @Bindable var calendarManager: CalendarManager
     @Bindable var holidayService: HolidayService
-    @State private var showSettings = false
+    @Binding var showSettings: Bool
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -49,6 +49,7 @@ struct MenuBarView: View {
             // 底部菜单选项
             HStack(spacing: 8) {
                 Button {
+                    print("📍 打开设置窗口")
                     showSettings = true
                 } label: {
                     HStack(spacing: 4) {
@@ -86,9 +87,6 @@ struct MenuBarView: View {
         .onAppear {
             print("📅 MenuBarView appeared - frame width: 380")
         }
-        .sheet(isPresented: $showSettings) {
-            SettingsView(clockManager: clockManager)
-        }
     }
     
     private var formattedDate: String {
@@ -108,6 +106,7 @@ struct MenuBarView: View {
     MenuBarView(
         clockManager: ClockManager(),
         calendarManager: CalendarManager(),
-        holidayService: HolidayService()
+        holidayService: HolidayService(),
+        showSettings: .constant(false)
     )
 }

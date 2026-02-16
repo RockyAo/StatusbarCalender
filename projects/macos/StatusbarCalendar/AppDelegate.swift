@@ -10,9 +10,17 @@ import SwiftUI
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     var menuBarManager: MenuBarManager?
+    let settingsWindow = SettingsWindow()
     
     func applicationDidFinishLaunching(_ notification: Notification) {
         print("✅ App 启动完成")
+        
+        // 延迟设置为辅助应用，确保 MenuBarExtra 已完全初始化
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            print("📍 延迟设置为辅助应用模式（无 Dock 图标）")
+            NSApp.setActivationPolicy(.accessory)
+            print("📍 已设置为辅助应用模式")
+        }
         
         // 提前请求辅助功能权限（用于悬停功能）
         requestAccessibilityPermission()
@@ -52,6 +60,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 }
             }
         }
+    }
+    
+    // MARK: - Settings Window
+    
+    @MainActor
+    func showSettings(clockManager: ClockManager) {
+        settingsWindow.show(clockManager: clockManager)
     }
     
 }

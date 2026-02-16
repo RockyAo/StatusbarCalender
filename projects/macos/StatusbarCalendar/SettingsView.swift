@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SettingsView: View {
     @Bindable var clockManager: ClockManager
-    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         VStack(spacing: 0) {
@@ -126,12 +125,6 @@ struct SettingsView: View {
                 .buttonStyle(.bordered)
                 
                 Spacer()
-                
-                Button("完成") {
-                    dismiss()
-                }
-                .buttonStyle(.borderedProminent)
-                .keyboardShortcut(.defaultAction)
             }
             .padding()
         }
