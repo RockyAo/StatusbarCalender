@@ -80,6 +80,8 @@ final class CalendarManager {
     func previousMonth() {
         if let newDate = calendar.date(byAdding: .month, value: -1, to: selectedMonth) {
             selectedMonth = newDate
+            // 确保新月份对应年份的数据已加载
+            ensureYearDataLoaded(for: newDate)
         }
     }
     
@@ -87,6 +89,18 @@ final class CalendarManager {
     func nextMonth() {
         if let newDate = calendar.date(byAdding: .month, value: 1, to: selectedMonth) {
             selectedMonth = newDate
+            // 确保新月份对应年份的数据已加载
+            ensureYearDataLoaded(for: newDate)
+        }
+    }
+    
+    /// 确保指定日期所在年份的数据已加载
+    private func ensureYearDataLoaded(for date: Date) {
+        guard let service = holidayService else { return }
+        let year = calendar.component(.year, from: date)
+        
+        Task {
+            await service.ensureYearLoaded(year)
         }
     }
     

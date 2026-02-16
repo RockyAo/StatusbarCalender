@@ -10,6 +10,7 @@ import SwiftUI
 struct MenuBarView: View {
     @Bindable var clockManager: ClockManager
     @Bindable var calendarManager: CalendarManager
+    @Bindable var holidayService: HolidayService
     @State private var showSettingsWindow = false
     
     var body: some View {
@@ -104,5 +105,9 @@ struct MenuBarView: View {
 }
 
 #Preview {
-    MenuBarView(clockManager: ClockManager(), calendarManager: CalendarManager())
+    MenuBarView(
+        clockManager: ClockManager(),
+        calendarManager: CalendarManager(),
+        holidayService: HolidayService()
+    )
 }

@@ -39,6 +39,7 @@ final class HolidayDatabase: Sendable {
         print("📂 Database path: \(dbPath)")
         
         self.openDatabase()
+        self.migrateIfNeeded()
         self.createTableIfNeeded()
     }
     
@@ -63,13 +64,40 @@ final class HolidayDatabase: Sendable {
         }
     }
     
+    private func migrateIfNeeded() {
+        // 检查是否存在旧的 wage 字段
+        let checkColumnSQL = "PRAGMA table_info(holidays)"
+        var statement: OpaquePointer?
+        var hasWageColumn = false
+        
+        if sqlite3_prepare_v2(db, checkColumnSQL, -1, &statement, nil) == SQLITE_OK {
+            while sqlite3_step(statement) == SQLITE_ROW {
+                if let columnName = sqlite3_column_text(statement, 1) {
+                    let name = String(cString: columnName)
+                    if name == "wage" {
+                        hasWageColumn = true
+                        break
+                    }
+                }
+            }
+        }
+        sqlite3_finalize(statement)
+        
+        // 如果存在旧字段，删除表重建
+        if hasWageColumn {
+            print("🔄 Migrating database schema...")
+            sqlite3_exec(db, "DROP TABLE IF EXISTS holidays", nil, nil, nil)
+            print("✅ Old schema removed")
+        }
+    }
+    
     private func createTableIfNeeded() {
         let createTableSQL = """
         CREATE TABLE IF NOT EXISTS holidays (
             date TEXT PRIMARY KEY,
             is_holiday INTEGER NOT NULL,
             name TEXT NOT NULL,
-            wage INTEGER NOT NULL,
+            days INTEGER NOT NULL,
             updated_at TEXT NOT NULL
         );
         
@@ -94,23 +122,23 @@ final class HolidayDatabase: Sendable {
     // MARK: - Public Methods
     
     /// 保存节假日数据
-    func saveHolidays(_ holidays: [String: HolidayDay], year: Int) {
+    func saveHolidays(_ holidays: [HolidayDay], year: Int) {
         let now = dateFormatter.string(from: Date())
         
         // 开始事务
         sqlite3_exec(db, "BEGIN TRANSACTION", nil, nil, nil)
         
-        let insertSQL = "INSERT OR REPLACE INTO holidays (date, is_holiday, name, wage, updated_at) VALUES (?, ?, ?, ?, ?)"
+        let insertSQL = "INSERT OR REPLACE INTO holidays (date, is_holiday, name, days, updated_at) VALUES (?, ?, ?, ?, ?)"
         var statement: OpaquePointer?
         
         if sqlite3_prepare_v2(db, insertSQL, -1, &statement, nil) == SQLITE_OK {
             var successCount = 0
             
-            for (_, holiday) in holidays {
+            for holiday in holidays {
                 sqlite3_bind_text(statement, 1, (holiday.date as NSString).utf8String, -1, nil)
                 sqlite3_bind_int(statement, 2, holiday.holiday ? 1 : 0)
                 sqlite3_bind_text(statement, 3, (holiday.name as NSString).utf8String, -1, nil)
-                sqlite3_bind_int(statement, 4, Int32(holiday.wage))
+                sqlite3_bind_int(statement, 4, Int32(holiday.days))
                 sqlite3_bind_text(statement, 5, (now as NSString).utf8String, -1, nil)
                 
                 if sqlite3_step(statement) == SQLITE_DONE {
@@ -154,7 +182,7 @@ final class HolidayDatabase: Sendable {
     
     /// 获取所有节假日数据（用于缓存）
     func getAllHolidays() -> [String: StoredHoliday] {
-        let querySQL = "SELECT date, is_holiday, name, wage FROM holidays"
+        let querySQL = "SELECT date, is_holiday, name, days FROM holidays"
         var statement: OpaquePointer?
         var holidays: [String: StoredHoliday] = [:]
         
@@ -163,13 +191,13 @@ final class HolidayDatabase: Sendable {
                 let date = String(cString: sqlite3_column_text(statement, 0))
                 let isHoliday = sqlite3_column_int(statement, 1) == 1
                 let name = String(cString: sqlite3_column_text(statement, 2))
-                let wage = Int(sqlite3_column_int(statement, 3))
+                let days = Int(sqlite3_column_int(statement, 3))
                 
                 let holiday = StoredHoliday(
                     date: date,
                     isHoliday: isHoliday,
                     name: name,
-                    wage: wage
+                    days: days
                 )
                 
                 holidays[date] = holiday

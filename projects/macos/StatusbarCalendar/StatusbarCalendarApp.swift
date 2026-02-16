@@ -12,6 +12,7 @@ struct StatusbarCalendarApp: App {
     @State private var clockManager = ClockManager()
     @State private var calendarManager = CalendarManager()
     @State private var holidayService = HolidayService()
+    @State private var hasLaunched = false
     
     init() {
         print("🚀 StatusbarCalendar App launching...")
@@ -21,12 +22,24 @@ struct StatusbarCalendarApp: App {
     
     var body: some Scene {
         MenuBarExtra("日历", systemImage: "calendar") {
-            MenuBarView(clockManager: clockManager, calendarManager: calendarManager)
-                .frame(width: 380)
-                .onAppear {
-                    print("🎯 日历面板显示")
-                    calendarManager.setHolidayService(holidayService)
+            MenuBarView(
+                clockManager: clockManager,
+                calendarManager: calendarManager,
+                holidayService: holidayService
+            )
+            .frame(width: 380)
+            .onAppear {
+                print("🎯 日历面板显示")
+                calendarManager.setHolidayService(holidayService)
+                
+                // 每次打开 app 时加载当前年份数据
+                if !hasLaunched {
+                    hasLaunched = true
+                    Task {
+                        await holidayService.checkAndSyncOnAppLaunch()
+                    }
                 }
+            }
         }
         .menuBarExtraStyle(.window)
         
