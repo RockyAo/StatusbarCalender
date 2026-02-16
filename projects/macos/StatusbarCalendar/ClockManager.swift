@@ -11,8 +11,9 @@ import Observation
 @Observable
 @MainActor
 final class ClockManager {
-    var showSeconds: Bool = true {
+    var displayOptions: DisplayOptions {
         didSet {
+            UserDefaults.standard.displayOptions = displayOptions
             updateTimeString()
             restartTimer()
         }
@@ -20,40 +21,43 @@ final class ClockManager {
     
     var currentTimeString: String = ""
     
-    private let dateFormatter: DateFormatter
     private var timerSource: DispatchSourceTimer?
+    private let lunarCalendar = LunarCalendar()
+    private let calendar = Calendar.current
     
     init() {
-        self.dateFormatter = DateFormatter()
-        updateDateFormat()
+        // 从 UserDefaults 加载显示选项
+        self.displayOptions = UserDefaults.standard.displayOptions
         updateTimeString()
         startTimer()
     }
     
     // MARK: - Public Methods
     
+    /// 切换显示秒
     func toggleShowSeconds() {
-        showSeconds.toggle()
-        updateDateFormat()
-        updateTimeString()
+        displayOptions.showSeconds.toggle()
+    }
+    
+    /// 切换时间格式
+    func toggleTimeFormat() {
+        displayOptions.timeFormat = (displayOptions.timeFormat == .twentyFourHour) ? .twelveHour : .twentyFourHour
     }
     
     // MARK: - Private Methods
     
-    private func updateDateFormat() {
-        if showSeconds {
-            dateFormatter.dateFormat = "HH:mm:ss"
-        } else {
-            dateFormatter.dateFormat = "HH:mm"
-        }
-    }
-    
     private func updateTimeString() {
-        currentTimeString = dateFormatter.string(from: Date())
+        let now = Date()
+        let lunarText = lunarCalendar.fullLunarInfo(from: now)
+        currentTimeString = displayOptions.generateStatusBarText(
+            date: now,
+            lunarText: lunarText,
+            calendar: calendar
+        )
     }
     
     private func startTimer() {
-        let interval: TimeInterval = showSeconds ? 1.0 : 60.0
+        let interval: TimeInterval = displayOptions.showSeconds ? 1.0 : 60.0
         
         let timer = DispatchSource.makeTimerSource(queue: .main)
         timer.schedule(deadline: .now() + interval, repeating: interval)
@@ -75,3 +79,4 @@ final class ClockManager {
         startTimer()
     }
 }
+

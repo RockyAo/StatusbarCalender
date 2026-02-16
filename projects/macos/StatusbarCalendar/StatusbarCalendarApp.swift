@@ -21,7 +21,7 @@ struct StatusbarCalendarApp: App {
     }
     
     var body: some Scene {
-        MenuBarExtra("日历", systemImage: "calendar") {
+        MenuBarExtra {
             MenuBarView(
                 clockManager: clockManager,
                 calendarManager: calendarManager,
@@ -40,6 +40,9 @@ struct StatusbarCalendarApp: App {
                     }
                 }
             }
+        } label: {
+            Text(clockManager.currentTimeString)
+                .fontDesign(.monospaced)
         }
         .menuBarExtraStyle(.window)
         

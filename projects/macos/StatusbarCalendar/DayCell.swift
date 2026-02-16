@@ -49,6 +49,11 @@ struct DayCell: View {
     
     // MARK: - Colors
     
+    private var isWeekend: Bool {
+        let weekday = Calendar.current.component(.weekday, from: dayInfo.date)
+        return weekday == 1 || weekday == 7 // 1 = Sunday, 7 = Saturday
+    }
+    
     private var textColor: Color {
         if !dayInfo.isCurrentMonth {
             return Color.secondary.opacity(0.4)
@@ -56,6 +61,11 @@ struct DayCell: View {
         
         if dayInfo.isToday {
             return .white
+        }
+        
+        // 周末使用橙色文字
+        if isWeekend {
+            return Color.orange
         }
         
         return Color.primary
