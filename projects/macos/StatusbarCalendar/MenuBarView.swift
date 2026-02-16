@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MenuBarView: View {
     @Bindable var clockManager: ClockManager
-    @State private var calendarManager = CalendarManager()
+    @Bindable var calendarManager: CalendarManager
     @State private var showSettingsWindow = false
     
     var body: some View {
@@ -32,7 +32,7 @@ struct MenuBarView: View {
                     
                     Text(clockManager.currentTimeString)
                         .font(.system(size: 18, weight: .medium, design: .monospaced))
-                        .foregroundStyle(Color.accentColor)
+                        .foregroundStyle(.primary)
                 }
             }
             .padding(16)
@@ -101,5 +101,5 @@ struct MenuBarView: View {
 }
 
 #Preview {
-    MenuBarView(clockManager: ClockManager())
+    MenuBarView(clockManager: ClockManager(), calendarManager: CalendarManager())
 }
