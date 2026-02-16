@@ -11,7 +11,7 @@ struct MenuBarView: View {
     @Bindable var clockManager: ClockManager
     @Bindable var calendarManager: CalendarManager
     @Bindable var holidayService: HolidayService
-    @State private var showSettingsWindow = false
+    @State private var showSettings = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -49,7 +49,7 @@ struct MenuBarView: View {
             // 底部菜单选项
             HStack(spacing: 8) {
                 Button {
-                    showSettingsWindow.toggle()
+                    showSettings = true
                 } label: {
                     HStack(spacing: 4) {
                         Image(systemName: "gear")
@@ -86,7 +86,7 @@ struct MenuBarView: View {
         .onAppear {
             print("📅 MenuBarView appeared - frame width: 380")
         }
-        .sheet(isPresented: $showSettingsWindow) {
+        .sheet(isPresented: $showSettings) {
             SettingsView(clockManager: clockManager)
         }
     }

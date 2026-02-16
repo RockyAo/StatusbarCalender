@@ -13,6 +13,19 @@ enum TimeFormat: String, Codable {
     case twelveHour = "12h"
 }
 
+/// 面板触发方式
+enum TriggerMode: String, Codable {
+    case click = "click"     // 点击触发
+    case hover = "hover"     // 悬停触发
+    
+    var displayName: String {
+        switch self {
+        case .click: return "点击触发"
+        case .hover: return "鼠标悬停"
+        }
+    }
+}
+
 /// 状态栏显示选项
 struct DisplayOptions: Codable {
     var showDate: Bool = true
@@ -21,6 +34,7 @@ struct DisplayOptions: Codable {
     var showTime: Bool = true
     var showSeconds: Bool = true
     var timeFormat: TimeFormat = .twentyFourHour
+    var triggerMode: TriggerMode = .click
     
     /// 生成状态栏显示字符串
     func generateStatusBarText(date: Date, lunarText: String, calendar: Calendar) -> String {

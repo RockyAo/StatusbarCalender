@@ -47,6 +47,55 @@ struct SettingsView: View {
                     Text("时间设置")
                 }
                 
+                // 面板触发方式
+                Section {
+                    Picker("触发方式", selection: $clockManager.displayOptions.triggerMode) {
+                        Text("点击触发").tag(TriggerMode.click)
+                        Text("鼠标悬停").tag(TriggerMode.hover)
+                    }
+                    
+                    // 如果选择悬停模式，显示权限提示
+                    if clockManager.displayOptions.triggerMode == .hover {
+                        VStack(alignment: .leading, spacing: 8) {
+                            HStack(alignment: .top, spacing: 8) {
+                                Image(systemName: "exclamationmark.triangle.fill")
+                                    .foregroundStyle(.orange)
+                                    .font(.system(size: 14))
+                                
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text("需要辅助功能权限")
+                                        .font(.system(size: 12, weight: .medium))
+                                    
+                                    Text("鼠标悬停功能需要辅助功能权限才能正常工作")
+                                        .font(.system(size: 11))
+                                        .foregroundStyle(.secondary)
+                                }
+                            }
+                            
+                            Button("打开系统设置") {
+                                if let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility") {
+                                    NSWorkspace.shared.open(url)
+                                }
+                            }
+                            .buttonStyle(.bordered)
+                            .controlSize(.small)
+                        }
+                        .padding(.vertical, 8)
+                    }
+                } header: {
+                    Text("面板显示")
+                } footer: {
+                    if clockManager.displayOptions.triggerMode == .click {
+                        Text("点击状态栏图标打开日历面板")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    } else {
+                        Text("鼠标移到状态栏图标上方 0.3 秒后自动打开面板")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+                
                 // 预览
                 Section {
                     HStack {
@@ -68,6 +117,7 @@ struct SettingsView: View {
             }
             .formStyle(.grouped)
             
+            // 底部按钮
             // 底部按钮
             HStack {
                 Button("恢复默认") {
