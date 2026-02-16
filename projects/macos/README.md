@@ -55,7 +55,45 @@
 - **并发模型**: @MainActor 严格并发检查
 - **农历计算**: Apple 原生 Calendar API
 
-## 📂 项目结构
+## � 快速开始
+
+### 环境要求
+
+- macOS 14.0 或更高版本
+- Xcode 15.0+ (支持 Swift 6)
+- 无需额外依赖库
+
+### 方法 1: 直接运行 (推荐)
+
+```bash
+cd /Users/yun.ao/Documents/github/StatusbarCalender/projects/macos
+open StatusbarCalendar.xcodeproj
+```
+
+在 Xcode 中：
+1. 选择 **StatusbarCalendar** scheme
+2. 选择 **My Mac** 作为目标设备
+3. 按 `⌘R` 或点击运行按钮
+4. 应用将在菜单栏显示 🎉
+
+### 方法 2: 使用 Finder
+
+直接在 Finder 中双击 `StatusbarCalendar.xcodeproj` 文件，然后按 `⌘R` 运行。
+
+### 首次运行
+
+1. 应用启动后会在菜单栏显示日历图标和当前时间
+2. 点击菜单栏图标即可弹出日历面板
+3. 应用不会在 Dock 中显示图标（已设置 `LSUIElement = true`）
+
+### 使用提示
+
+- **查看日历**: 点击菜单栏图标
+- **切换月份**: 使用日历顶部的左右箭头
+- **回到今天**: 点击底部"回到今天"按钮
+- **退出应用**: 点击底部"退出"按钮
+
+## �📂 项目结构
 
 ```
 StatusbarCalendar/
@@ -68,32 +106,17 @@ StatusbarCalendar/
 ├── CalendarGridView.swift       # 日历网格 (LazyVGrid)
 ├── DayCell.swift                # 日期单元格组件
 ├── SettingsView.swift           # 设置界面
+├── HolidayService.swift         # 节假日数据服务
+├── HolidayModels.swift          # 节假日数据模型
+├── HolidayDatabase.swift        # SQLite 数据库管理
 └── Assets.xcassets/             # 资源文件
 ```
 
-## 🚀 快速开始
+## 📖 详细文档
 
-### 1. 打开项目
-
-```bash
-cd projects/macos
-open StatusbarCalendar.xcodeproj
-```
-
-### 2. 运行应用
-
-1. 在 Xcode 中选择 **StatusbarCalendar** scheme
-2. 选择 **My Mac** 作为目标设备
-3. 按 `⌘R` 或点击运行按钮
-4. 应用将在菜单栏显示时钟 🎉
-
-### 3. 使用应用
-
-- **点击菜单栏时钟**: 显示完整日历面板
-- **切换月份**: 使用左右箭头按钮
-- **回到今天**: 点击底部"回到今天"按钮
-- **设置**: 点击底部"设置"按钮配置显示选项
-- **退出**: 点击"退出"按钮
+- **实现说明**: 查看 [documents/IMPLEMENTATION.md](../../documents/IMPLEMENTATION.md) 了解详细的技术实现
+- **技术规约**: 查看 [documents/tech.md](../../documents/tech.md) 了解技术架构和开发规范
+- **产品需求**: 查看 [documents/production.md](../../documents/production.md) 了解产品定位
 
 ## 🎯 核心实现
 
