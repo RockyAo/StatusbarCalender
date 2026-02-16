@@ -1,0 +1,11 @@
+.DS_Store
+.build/
+xcuserdata/
+DerivedData/
+.swiftpm/
+*.swp
+*.swo
+*~
+# Keep Xcode project but ignore user data
+StatusbarCalendar.xcodeproj/xcuserdata/
+StatusbarCalendar.xcodeproj/project.xcworkspace/xcuserdata/
