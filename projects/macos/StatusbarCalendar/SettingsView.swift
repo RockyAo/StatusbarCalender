@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AppKit
 
 struct SettingsView: View {
     @Bindable var clockManager: ClockManager
@@ -89,9 +90,36 @@ struct SettingsView: View {
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     } else {
-                        Text("鼠标移到状态栏图标上方 0.3 秒后自动打开面板")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("鼠标移到状态栏图标上方 0.3 秒后自动打开面板")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                            
+                            let trusted = AXIsProcessTrusted()
+                            if !trusted {
+                                HStack(spacing: 4) {
+                                    Image(systemName: "exclamationmark.triangle.fill")
+                                        .foregroundStyle(.orange)
+                                    Text("悬停功能需要辅助功能权限")
+                                        .foregroundStyle(.orange)
+                                    Button("前往设置") {
+                                        if let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility") {
+                                            NSWorkspace.shared.open(url)
+                                        }
+                                    }
+                                    .buttonStyle(.link)
+                                }
+                                .font(.caption)
+                            } else {
+                                HStack(spacing: 4) {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .foregroundStyle(.green)
+                                    Text("辅助功能权限已授权")
+                                        .foregroundStyle(.green)
+                                }
+                                .font(.caption)
+                            }
+                        }
                     }
                 }
                 
