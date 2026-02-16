@@ -16,25 +16,21 @@ struct MenuBarView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             // 当前日期时间信息头部
-            VStack(alignment: .leading, spacing: 6) {
-                HStack(alignment: .top) {
-                    VStack(alignment: .leading, spacing: 2) {
-                        HStack(spacing: 6) {
-                            Text(formattedDate)
-                                .font(.system(size: 18, weight: .semibold))
-                        }
-                        
-                        Text(lunarInfo)
-                            .font(.system(size: 11))
-                            .foregroundStyle(.secondary)
-                    }
-                    
+            VStack(alignment: .leading, spacing: 8) {
+                // 第一行：日期和星期
+                HStack {
+                    Text(formattedDate)
+                        .font(.system(size: 18, weight: .semibold))
                     Spacer()
-                    
                     Text(clockManager.currentTimeString)
-                        .font(.system(size: 18, weight: .medium, design: .monospaced))
-                        .foregroundStyle(.primary)
+                        .font(.system(size: 16, weight: .medium, design: .monospaced))
+                        .foregroundStyle(.secondary)
                 }
+                
+                // 第二行：农历信息
+                Text(lunarInfo)
+                    .font(.system(size: 11))
+                    .foregroundStyle(.secondary)
             }
             .padding(16)
             .padding(.bottom, 4)

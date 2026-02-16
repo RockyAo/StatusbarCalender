@@ -47,12 +47,7 @@ struct DisplayOptions: Codable {
             components.append(dateFormatter.string(from: date))
         }
         
-        // 农历部分 "正月初九"
-        if showLunar {
-            components.append(lunarText)
-        }
-        
-        // 星期部分 "周日"
+        // 星期部分 "周日" - 放在农历之前，更简洁
         if showWeekday {
             let weekdayFormatter = DateFormatter()
             weekdayFormatter.dateFormat = "EEEE"
@@ -63,7 +58,19 @@ struct DisplayOptions: Codable {
             components.append(weekday)
         }
         
-        // 时间部分 "14:30:45" 或 "2:30:45 PM"
+        // 农历部分 - 只显示月日，不显示年份，更简洁
+        if showLunar {
+            // 从完整农历信息中提取月日部分
+            // "农历42年 腊月廿九" -> "腊月廿九"
+            let parts = lunarText.components(separatedBy: " ")
+            if parts.count >= 2 {
+                components.append(parts[1])
+            } else {
+                components.append(lunarText)
+            }
+        }
+        
+        // 时间部分 "14:30:45" 或 "2:30 PM"
         if showTime {
             let timeFormatter = DateFormatter()
             switch timeFormat {
