@@ -16,24 +16,27 @@ struct MenuBarView: View {
         VStack(alignment: .leading, spacing: 0) {
             // 当前日期时间信息头部
             VStack(alignment: .leading, spacing: 6) {
-                HStack {
+                HStack(alignment: .top) {
                     VStack(alignment: .leading, spacing: 2) {
-                        Text(formattedDate)
-                            .font(.system(size: 16, weight: .semibold))
+                        HStack(spacing: 6) {
+                            Text(formattedDate)
+                                .font(.system(size: 18, weight: .semibold))
+                        }
                         
                         Text(lunarInfo)
-                            .font(.system(size: 12))
+                            .font(.system(size: 11))
                             .foregroundStyle(.secondary)
                     }
                     
                     Spacer()
                     
                     Text(clockManager.currentTimeString)
-                        .font(.system(size: 20, weight: .medium, design: .monospaced))
+                        .font(.system(size: 18, weight: .medium, design: .monospaced))
                         .foregroundStyle(Color.accentColor)
                 }
             }
-            .padding(12)
+            .padding(16)
+            .padding(.bottom, 4)
             
             Divider()
             
@@ -47,28 +50,38 @@ struct MenuBarView: View {
                 Button {
                     showSettingsWindow.toggle()
                 } label: {
-                    Label("设置", systemImage: "gear")
-                        .font(.system(size: 12))
+                    HStack(spacing: 4) {
+                        Image(systemName: "gear")
+                            .font(.system(size: 12))
+                        Text("设置")
+                            .font(.system(size: 11))
+                    }
                 }
                 .buttonStyle(.plain)
+                .foregroundStyle(.secondary)
                 
                 Spacer()
                 
                 Button {
                     NSApplication.shared.terminate(nil)
                 } label: {
-                    Label("退出", systemImage: "power")
-                        .font(.system(size: 12))
+                    HStack(spacing: 4) {
+                        Image(systemName: "power")
+                            .font(.system(size: 12))
+                        Text("退出")
+                            .font(.system(size: 11))
+                    }
                 }
                 .buttonStyle(.plain)
+                .foregroundStyle(.secondary)
             }
-            .padding(.horizontal, 12)
-            .padding(.vertical, 8)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 12)
         }
-        .frame(width: 280)
+        .frame(width: 380)
         .background(.ultraThinMaterial)
-        .clipShape(RoundedRectangle(cornerRadius: 12))
-        .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 5)
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .shadow(color: .black.opacity(0.15), radius: 12, x: 0, y: 4)
         .sheet(isPresented: $showSettingsWindow) {
             SettingsView(clockManager: clockManager)
         }
@@ -89,5 +102,4 @@ struct MenuBarView: View {
 
 #Preview {
     MenuBarView(clockManager: ClockManager())
-        .frame(width: 300, height: 500)
 }

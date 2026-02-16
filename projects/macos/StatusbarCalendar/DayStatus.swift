@@ -32,8 +32,10 @@ struct DayInfo: Identifiable, Sendable {
     let lunarText: String
     var status: DayStatus = .normal
     var holidayName: String?
+    var isSolarTerm: Bool = false  // 是否是节气
+    var isFestival: Bool = false   // 是否是节日
     
-    init(date: Date, day: Int, isCurrentMonth: Bool, isToday: Bool, lunarText: String, status: DayStatus = .normal, holidayName: String? = nil) {
+    init(date: Date, day: Int, isCurrentMonth: Bool, isToday: Bool, lunarText: String, status: DayStatus = .normal, holidayName: String? = nil, isSolarTerm: Bool = false, isFestival: Bool = false) {
         self.date = date
         self.day = day
         self.isCurrentMonth = isCurrentMonth
@@ -41,5 +43,7 @@ struct DayInfo: Identifiable, Sendable {
         self.lunarText = lunarText
         self.status = status
         self.holidayName = holidayName
+        self.isSolarTerm = isSolarTerm
+        self.isFestival = isFestival
     }
 }

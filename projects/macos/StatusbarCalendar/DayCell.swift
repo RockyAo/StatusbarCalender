@@ -11,52 +11,51 @@ struct DayCell: View {
     let dayInfo: DayInfo
     
     var body: some View {
-        VStack(spacing: 2) {
-            // 日期数字
-            ZStack(alignment: .topTrailing) {
+        ZStack(alignment: .topLeading) {
+            // 背景和内容
+            VStack(spacing: 2) {
+                // 日期数字
                 Text("\(dayInfo.day)")
-                    .font(.system(size: 14, weight: dayInfo.isToday ? .semibold : .regular))
+                    .font(.system(size: 14, weight: dayInfo.isToday ? .semibold : .medium))
                     .foregroundStyle(textColor)
+                    .frame(maxWidth: .infinity)
                 
-                // 节假日角标（休/班）
-                if let statusText = dayInfo.status.displayText {
-                    Text(statusText)
-                        .font(.system(size: 8, weight: .medium))
-                        .foregroundStyle(.white)
-                        .padding(.horizontal, 3)
-                        .padding(.vertical, 1)
-                        .background(statusBackgroundColor)
-                        .clipShape(RoundedRectangle(cornerRadius: 3))
-                        .offset(x: 8, y: -8)
+                // 农历文字
+                if !dayInfo.lunarText.isEmpty {
+                    Text(dayInfo.lunarText)
+                        .font(.system(size: 10))
+                        .foregroundStyle(lunarTextColor)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
                 }
             }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 8)
+            .background(backgroundColor)
+            .clipShape(RoundedRectangle(cornerRadius: 8))
             
-            // 农历文字
-            Text(dayInfo.lunarText)
-                .font(.system(size: 9))
-                .foregroundStyle(lunarTextColor)
-                .lineLimit(1)
-                .minimumScaleFactor(0.8)
+            // 节假日标记 - 左上角小圆点
+            if let statusText = dayInfo.status.displayText {
+                Text(statusText)
+                    .font(.system(size: 9, weight: .bold))
+                    .foregroundStyle(.white)
+                    .frame(width: 14, height: 14)
+                    .background(statusBackgroundColor)
+                    .clipShape(Circle())
+                    .offset(x: 4, y: 4)
+            }
         }
-        .frame(height: 44)
-        .frame(maxWidth: .infinity)
-        .background(backgroundColor)
-        .clipShape(RoundedRectangle(cornerRadius: 6))
-        .overlay(
-            RoundedRectangle(cornerRadius: 6)
-                .strokeBorder(borderColor, lineWidth: dayInfo.isToday ? 2 : 0)
-        )
     }
     
     // MARK: - Colors
     
     private var textColor: Color {
         if !dayInfo.isCurrentMonth {
-            return Color.secondary.opacity(0.3)
+            return Color.secondary.opacity(0.4)
         }
         
         if dayInfo.isToday {
-            return Color.accentColor
+            return .white
         }
         
         return Color.primary
@@ -64,7 +63,16 @@ struct DayCell: View {
     
     private var lunarTextColor: Color {
         if !dayInfo.isCurrentMonth {
-            return Color.secondary.opacity(0.2)
+            return Color.secondary.opacity(0.3)
+        }
+        
+        if dayInfo.isToday {
+            return Color.white.opacity(0.9)
+        }
+        
+        // 节气和节日用红色
+        if dayInfo.isSolarTerm || dayInfo.isFestival {
+            return Color.red.opacity(0.8)
         }
         
         return Color.secondary.opacity(0.7)
@@ -72,15 +80,15 @@ struct DayCell: View {
     
     private var backgroundColor: Color {
         if dayInfo.isToday {
-            return Color.accentColor.opacity(0.1)
+            return Color.blue
         }
         
-        return Color.clear
-    }
-    
-    private var borderColor: Color {
-        if dayInfo.isToday {
-            return Color.accentColor
+        if dayInfo.status == .holiday {
+            return Color.red.opacity(0.08)
+        }
+        
+        if dayInfo.status == .workday {
+            return Color.orange.opacity(0.08)
         }
         
         return Color.clear
@@ -89,9 +97,9 @@ struct DayCell: View {
     private var statusBackgroundColor: Color {
         switch dayInfo.status {
         case .holiday:
-            return Color.red.opacity(0.8)
+            return Color.red
         case .workday:
-            return Color.blue.opacity(0.7)
+            return Color.orange
         case .normal:
             return Color.clear
         }
