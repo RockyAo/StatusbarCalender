@@ -9,17 +9,19 @@ import Foundation
 import Observation
 
 @Observable
+@MainActor
 final class ClockManager {
     var showSeconds: Bool = true {
         didSet {
             updateTimeString()
+            restartTimer()
         }
     }
     
     var currentTimeString: String = ""
     
-    private var timer: Timer?
     private let dateFormatter: DateFormatter
+    private var timerSource: DispatchSourceTimer?
     
     init() {
         self.dateFormatter = DateFormatter()
@@ -28,17 +30,12 @@ final class ClockManager {
         startTimer()
     }
     
-    deinit {
-        stopTimer()
-    }
-    
     // MARK: - Public Methods
     
     func toggleShowSeconds() {
         showSeconds.toggle()
         updateDateFormat()
         updateTimeString()
-        restartTimer()
     }
     
     // MARK: - Private Methods
@@ -57,18 +54,20 @@ final class ClockManager {
     
     private func startTimer() {
         let interval: TimeInterval = showSeconds ? 1.0 : 60.0
-        timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { [weak self] _ in
+        
+        let timer = DispatchSource.makeTimerSource(queue: .main)
+        timer.schedule(deadline: .now() + interval, repeating: interval)
+        timer.setEventHandler { [weak self] in
             self?.updateTimeString()
         }
-        // 确保 timer 在 common run loop mode 中运行
-        if let timer = timer {
-            RunLoop.main.add(timer, forMode: .common)
-        }
+        timer.resume()
+        
+        self.timerSource = timer
     }
     
     private func stopTimer() {
-        timer?.invalidate()
-        timer = nil
+        timerSource?.cancel()
+        timerSource = nil
     }
     
     private func restartTimer() {

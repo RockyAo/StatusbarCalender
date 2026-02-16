@@ -82,6 +82,9 @@ struct MenuBarView: View {
         .background(.ultraThinMaterial)
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .shadow(color: .black.opacity(0.15), radius: 12, x: 0, y: 4)
+        .onAppear {
+            print("📅 MenuBarView appeared - frame width: 380")
+        }
         .sheet(isPresented: $showSettingsWindow) {
             SettingsView(clockManager: clockManager)
         }

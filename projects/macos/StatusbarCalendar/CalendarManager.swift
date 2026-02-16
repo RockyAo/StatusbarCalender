@@ -16,6 +16,12 @@ final class CalendarManager {
     
     private let calendar = Calendar.current
     private let lunarCalendar = LunarCalendar()
+    private var holidayService: HolidayService?
+    
+    /// 设置节假日服务
+    func setHolidayService(_ service: HolidayService) {
+        self.holidayService = service
+    }
     
     var displayedMonthYear: String {
         let formatter = DateFormatter()
@@ -47,12 +53,20 @@ final class CalendarManager {
             let isToday = calendar.isDateInToday(currentDate)
             let lunarText = lunarCalendar.lunarDateString(from: currentDate)
             
+            // 查询节假日状态
+            let status = holidayService?.getStatus(for: currentDate) ?? .normal
+            let holidayName = holidayService?.getHolidayName(for: currentDate)
+            
             let dayInfo = DayInfo(
                 date: currentDate,
                 day: day,
                 isCurrentMonth: isCurrentMonth,
                 isToday: isToday,
-                lunarText: lunarText
+                lunarText: lunarText,
+                status: status,
+                holidayName: holidayName,
+                isSolarTerm: false,
+                isFestival: false
             )
             
             days.append(dayInfo)

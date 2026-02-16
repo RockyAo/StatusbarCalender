@@ -11,6 +11,7 @@ import SwiftUI
 struct StatusbarCalendarApp: App {
     @State private var clockManager = ClockManager()
     @State private var calendarManager = CalendarManager()
+    @State private var holidayService = HolidayService()
     
     init() {
         print("🚀 StatusbarCalendar App launching...")
@@ -19,17 +20,12 @@ struct StatusbarCalendarApp: App {
     }
     
     var body: some Scene {
-        MenuBarExtra {
+        MenuBarExtra("日历", systemImage: "calendar") {
             MenuBarView(clockManager: clockManager, calendarManager: calendarManager)
+                .frame(width: 380)
                 .onAppear {
-                    print("✅ MenuBarExtra content appeared")
-                }
-        } label: {
-            Text(clockManager.currentTimeString)
-                .font(.system(.body, design: .monospaced))
-                .monospacedDigit()
-                .onAppear {
-                    print("✅ MenuBarExtra label appeared: \(clockManager.currentTimeString)")
+                    print("🎯 日历面板显示")
+                    calendarManager.setHolidayService(holidayService)
                 }
         }
         .menuBarExtraStyle(.window)

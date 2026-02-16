@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:StatusbarCalender}/projects/macos",
+            "name": "Debug StatusbarCalendar (projects/macos)",
+            "target": "StatusbarCalendar",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug StatusbarCalendar (projects/macos)"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:StatusbarCalender}/projects/macos",
+            "name": "Release StatusbarCalendar (projects/macos)",
+            "target": "StatusbarCalendar",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release StatusbarCalendar (projects/macos)"
+        }
+    ]
+}
