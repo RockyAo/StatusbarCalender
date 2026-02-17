@@ -13,7 +13,7 @@ import Observation
 final class ClockManager {
     var displayOptions: DisplayOptions {
         didSet {
-            UserDefaults.standard.displayOptions = displayOptions
+            userDefaults.displayOptions = displayOptions
             updateTimeString()
             restartTimer()
         }
@@ -22,14 +22,25 @@ final class ClockManager {
     var currentTimeString: String = ""
     
     private var timerSource: DispatchSourceTimer?
-    private let lunarCalendar = LunarCalendar()
-    private let calendar = Calendar.current
+    private let lunarCalendar: LunarCalendar
+    private let calendar: Calendar
+    private let userDefaults: UserDefaults
     
-    init() {
+    init(
+        userDefaults: UserDefaults = .standard,
+        calendar: Calendar = .current,
+        lunarCalendar: LunarCalendar = LunarCalendar(),
+        shouldStartTimer: Bool = true
+    ) {
+        self.userDefaults = userDefaults
+        self.calendar = calendar
+        self.lunarCalendar = lunarCalendar
         // 从 UserDefaults 加载显示选项
-        self.displayOptions = UserDefaults.standard.displayOptions
+        self.displayOptions = userDefaults.displayOptions
         updateTimeString()
-        startTimer()
+        if shouldStartTimer {
+            startTimer()
+        }
     }
     
     // MARK: - Public Methods

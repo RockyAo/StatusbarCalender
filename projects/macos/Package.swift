@@ -22,6 +22,11 @@ let package = Package(
                 .enableUpcomingFeature("BareSlashRegexLiterals"),
                 .enableExperimentalFeature("StrictConcurrency")
             ]
+        ),
+        .testTarget(
+            name: "StatusbarCalendarTests",
+            dependencies: ["StatusbarCalendar"],
+            path: "Tests/StatusbarCalendarTests"
         )
     ]
 )

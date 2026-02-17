@@ -22,14 +22,19 @@ final class HolidayDatabase: Sendable {
         return formatter
     }
     
-    nonisolated init() {
+    nonisolated init(baseDirectory: URL? = nil, bundleID: String? = Bundle.main.bundleIdentifier) {
         self.dateFormatter = Self.makeDateFormatter()
         
         // 数据库存储在 Application Support 目录
         let fileManager = FileManager.default
-        let appSupport = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
-        let bundleID = Bundle.main.bundleIdentifier ?? "com.example.StatusbarCalendar"
-        let appDirectory = appSupport.appendingPathComponent(bundleID, isDirectory: true)
+        let appDirectory: URL
+        if let baseDirectory = baseDirectory {
+            appDirectory = baseDirectory
+        } else {
+            let appSupport = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
+            let resolvedBundleID = bundleID ?? "com.example.StatusbarCalendar"
+            appDirectory = appSupport.appendingPathComponent(resolvedBundleID, isDirectory: true)
+        }
         
         // 创建目录（如果不存在）
         try? fileManager.createDirectory(at: appDirectory, withIntermediateDirectories: true)

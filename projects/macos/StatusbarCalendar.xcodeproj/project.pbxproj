@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		1A1A1A1A1A1A1A1A1A1A1A1A /* StatusbarCalendarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2A2A2A2A2A2A2A2A2A2A2A /* StatusbarCalendarApp.swift */; };
+		B0B0B0B0B0B0B0B0B0B0B0B1 /* CalendarManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C0C0C0C0C0C0C0C0C0C0C1 /* CalendarManagerTests.swift */; };
+		B0B0B0B0B0B0B0B0B0B0B0B2 /* ClockManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C0C0C0C0C0C0C0C0C0C0C2 /* ClockManagerTests.swift */; };
+		B0B0B0B0B0B0B0B0B0B0B0B3 /* HolidayDatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C0C0C0C0C0C0C0C0C0C0C3 /* HolidayDatabaseTests.swift */; };
+		B0B0B0B0B0B0B0B0B0B0B0B4 /* HolidayServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C0C0C0C0C0C0C0C0C0C0C4 /* HolidayServiceTests.swift */; };
+		B0B0B0B0B0B0B0B0B0B0B0B5 /* LunarCalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C0C0C0C0C0C0C0C0C0C0C5 /* LunarCalendarTests.swift */; };
+		B0B0B0B0B0B0B0B0B0B0B0B6 /* MenuBarManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C0C0C0C0C0C0C0C0C0C0C6 /* MenuBarManagerTests.swift */; };
+		B0B0B0B0B0B0B0B0B0B0B0B7 /* SettingsWindowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C0C0C0C0C0C0C0C0C0C0C7 /* SettingsWindowTests.swift */; };
+		B0B0B0B0B0B0B0B0B0B0B0B8 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C0C0C0C0C0C0C0C0C0C0C8 /* TestHelpers.swift */; };
 		3D858C552F4355380026D238 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D858C542F4355380026D238 /* AppDelegate.swift */; };
 		3D858C6F2F436B0B0026D238 /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D858C622F436B0B0026D238 /* CalendarManager.swift */; };
 		3D858C702F436B0B0026D238 /* DisplayOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D858C5B2F436B0B0026D238 /* DisplayOptions.swift */; };
@@ -27,8 +35,27 @@
 		3D858C7E2F436B0B0026D238 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3D858C5E2F436B0B0026D238 /* README.md */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		E0E0E0E0E0E0E0E0E0E0E0E6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BABABABABABABABABABABABA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7A7A7A7A7A7A7A7A7A7A7A7A;
+			remoteInfo = StatusbarCalendar;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0A0A0A0A0A0A0A0A0A0A0A0A /* StatusbarCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StatusbarCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0C0C0C0C0C0C0C0C0C0C0C1 /* CalendarManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManagerTests.swift; sourceTree = "<group>"; };
+		C0C0C0C0C0C0C0C0C0C0C0C2 /* ClockManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockManagerTests.swift; sourceTree = "<group>"; };
+		C0C0C0C0C0C0C0C0C0C0C0C3 /* HolidayDatabaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayDatabaseTests.swift; sourceTree = "<group>"; };
+		C0C0C0C0C0C0C0C0C0C0C0C4 /* HolidayServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayServiceTests.swift; sourceTree = "<group>"; };
+		C0C0C0C0C0C0C0C0C0C0C0C5 /* LunarCalendarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarCalendarTests.swift; sourceTree = "<group>"; };
+		C0C0C0C0C0C0C0C0C0C0C0C6 /* MenuBarManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarManagerTests.swift; sourceTree = "<group>"; };
+		C0C0C0C0C0C0C0C0C0C0C0C7 /* SettingsWindowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowTests.swift; sourceTree = "<group>"; };
+		C0C0C0C0C0C0C0C0C0C0C0C8 /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
+		C0C0C0C0C0C0C0C0C0C0C0C9 /* StatusbarCalendarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StatusbarCalendarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A2A2A2A2A2A2A2A2A2A2A24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A2A2A2A2A2A2A2A2A2A2A2A /* StatusbarCalendarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusbarCalendarApp.swift; sourceTree = "<group>"; };
 		3D858C542F4355380026D238 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -58,9 +85,39 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E0E0E0E0E0E0E0E0E0E0E0E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D0D0D0D0D0D0D0D0D0D0D0D1 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				D0D0D0D0D0D0D0D0D0D0D0D2 /* StatusbarCalendarTests */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		D0D0D0D0D0D0D0D0D0D0D0D2 /* StatusbarCalendarTests */ = {
+			isa = PBXGroup;
+			children = (
+				C0C0C0C0C0C0C0C0C0C0C0C1 /* CalendarManagerTests.swift */,
+				C0C0C0C0C0C0C0C0C0C0C0C2 /* ClockManagerTests.swift */,
+				C0C0C0C0C0C0C0C0C0C0C0C3 /* HolidayDatabaseTests.swift */,
+				C0C0C0C0C0C0C0C0C0C0C0C4 /* HolidayServiceTests.swift */,
+				C0C0C0C0C0C0C0C0C0C0C0C5 /* LunarCalendarTests.swift */,
+				C0C0C0C0C0C0C0C0C0C0C0C6 /* MenuBarManagerTests.swift */,
+				C0C0C0C0C0C0C0C0C0C0C0C7 /* SettingsWindowTests.swift */,
+				C0C0C0C0C0C0C0C0C0C0C0C8 /* TestHelpers.swift */,
+			);
+			path = StatusbarCalendarTests;
+			sourceTree = "<group>";
+		};
 		3D858C5D2F436B0B0026D238 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				5A5A5A5A5A5A5A5A5A5A5A5A /* StatusbarCalendar */,
+				D0D0D0D0D0D0D0D0D0D0D0D1 /* Tests */,
 				6A6A6A6A6A6A6A6A6A6A6A6A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -139,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				0A0A0A0A0A0A0A0A0A0A0A0A /* StatusbarCalendar.app */,
+				C0C0C0C0C0C0C0C0C0C0C0C9 /* StatusbarCalendarTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -163,6 +222,24 @@
 			productReference = 0A0A0A0A0A0A0A0A0A0A0A0A /* StatusbarCalendar.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E0E0E0E0E0E0E0E0E0E0E0E1 /* StatusbarCalendarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F0F0F0F0F0F0F0F0F0F0F0F3 /* Build configuration list for PBXNativeTarget "StatusbarCalendarTests" */;
+			buildPhases = (
+				E0E0E0E0E0E0E0E0E0E0E0E2 /* Sources */,
+				E0E0E0E0E0E0E0E0E0E0E0E3 /* Frameworks */,
+				E0E0E0E0E0E0E0E0E0E0E0E4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E0E0E0E0E0E0E0E0E0E0E0E5 /* PBXTargetDependency */,
+			);
+			name = StatusbarCalendarTests;
+			productName = StatusbarCalendarTests;
+			productReference = C0C0C0C0C0C0C0C0C0C0C0C9 /* StatusbarCalendarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -174,6 +251,9 @@
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					7A7A7A7A7A7A7A7A7A7A7A7A = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					E0E0E0E0E0E0E0E0E0E0E0E1 = {
 						CreatedOnToolsVersion = 15.4;
 					};
 				};
@@ -192,6 +272,7 @@
 			projectRoot = "";
 			targets = (
 				7A7A7A7A7A7A7A7A7A7A7A7A /* StatusbarCalendar */,
+				E0E0E0E0E0E0E0E0E0E0E0E1 /* StatusbarCalendarTests */,
 			);
 		};
 /* End PBXProject section */
@@ -203,6 +284,13 @@
 			files = (
 				3D858C7D2F436B0B0026D238 /* Assets.xcassets in Resources */,
 				3D858C7E2F436B0B0026D238 /* README.md in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E0E0E0E0E0E0E0E0E0E0E0E4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,7 +320,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E0E0E0E0E0E0E0E0E0E0E0E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0B0B0B0B0B0B0B0B0B0B0B1 /* CalendarManagerTests.swift in Sources */,
+				B0B0B0B0B0B0B0B0B0B0B0B2 /* ClockManagerTests.swift in Sources */,
+				B0B0B0B0B0B0B0B0B0B0B0B3 /* HolidayDatabaseTests.swift in Sources */,
+				B0B0B0B0B0B0B0B0B0B0B0B4 /* HolidayServiceTests.swift in Sources */,
+				B0B0B0B0B0B0B0B0B0B0B0B5 /* LunarCalendarTests.swift in Sources */,
+				B0B0B0B0B0B0B0B0B0B0B0B6 /* MenuBarManagerTests.swift in Sources */,
+				B0B0B0B0B0B0B0B0B0B0B0B7 /* SettingsWindowTests.swift in Sources */,
+				B0B0B0B0B0B0B0B0B0B0B0B8 /* TestHelpers.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E0E0E0E0E0E0E0E0E0E0E0E5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7A7A7A7A7A7A7A7A7A7A7A7A /* StatusbarCalendar */;
+			targetProxy = E0E0E0E0E0E0E0E0E0E0E0E6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		DADADADADADADADADADADADA /* Debug */ = {
@@ -419,6 +530,50 @@
 			};
 			name = Release;
 		};
+		F0F0F0F0F0F0F0F0F0F0F0F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = StatusbarCalendarTests;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.StatusbarCalendarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StatusbarCalendar.app/Contents/MacOS/StatusbarCalendar";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+			};
+			name = Debug;
+		};
+		F0F0F0F0F0F0F0F0F0F0F0F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = StatusbarCalendarTests;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.StatusbarCalendarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StatusbarCalendar.app/Contents/MacOS/StatusbarCalendar";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -427,6 +582,15 @@
 			buildConfigurations = (
 				FAFAFAFAFAFAFAFAFAFAFAFA /* Debug */,
 				FBFBFBFBFBFBFBFBFBFBFBFB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F0F0F0F0F0F0F0F0F0F0F0F3 /* Build configuration list for PBXNativeTarget "StatusbarCalendarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F0F0F0F0F0F0F0F0F0F0F0F1 /* Debug */,
+				F0F0F0F0F0F0F0F0F0F0F0F2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

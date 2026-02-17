@@ -24,14 +24,14 @@ final class HolidayService {
     /// 已加载的年份集合
     private var loadedYears = Set<Int>()
     
-    init() {
+    init(database: HolidayDatabase = HolidayDatabase()) {
         // 初始化日期格式化器
         self.dateFormatter = DateFormatter()
         self.dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         self.dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         self.dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
         
-        self.database = HolidayDatabase()
+        self.database = database
         
         // 从数据库加载缓存数据
         self.cachedHolidays = database.getAllHolidays()
