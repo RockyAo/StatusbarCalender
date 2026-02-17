@@ -19,9 +19,6 @@ struct MenuBarView: View {
             VStack(alignment: .leading, spacing: 8) {
                 // 第一行：日期和星期
                 HStack {
-                    Text(formattedDate)
-                        .font(.system(size: 18, weight: .semibold))
-                    Spacer()
                     Text(clockManager.currentTimeString)
                         .font(.system(size: 16, weight: .medium, design: .monospaced))
                         .foregroundStyle(.secondary)
