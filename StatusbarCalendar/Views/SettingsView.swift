@@ -49,7 +49,6 @@ struct SettingsView: View {
 
                 Section("关于") {
                     LabeledContent("版本", value: "2.0")
-                    LabeledContent("节假日数据", value: "内置 2025–2026，json 可更新")
                 }
             }
             .formStyle(.grouped)
