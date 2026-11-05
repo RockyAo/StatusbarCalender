@@ -41,10 +41,12 @@ StatusbarCalendar/
 
 ## 更新节假日数据
 
-每年 11 月前后国务院办公厅发布次年安排后，编辑 `StatusbarCalendar/Resources/holidays.json`：
+每年 11 月前后国务院办公厅发布次年安排后，编辑 `StatusbarCalendar/Resources/holidays.json` 并 `git push` 即可——**无需发版**，已安装的 app 会在 24 小时内自动拉取（也可在设置中手动"检查更新"）。
 
 - `holidays`：放假日期（含调休连休的每一天），格式 `MM-DD`
 - `workdays`：周末补班日
+
+**数据源回退**：app 依次尝试 fastly.jsdelivr.net → cdn.jsdelivr.net → raw.githubusercontent.com（均为本仓库文件的 CDN 镜像）。若全部不可达（如无网络），静默使用内置数据。也可以在设置中填写自定义数据源 URL（例如 Gitee 镜像 `https://gitee.com/<user>/<repo>/raw/main/StatusbarCalendar/Resources/holidays.json` 或自有 OSS），填写后优先使用。
 
 > 内置 2025 全年、2026 全年（2026 年劳动节/国庆的调休补班日以官方通知为准，确认后补充到 `workdays` 即可）。
 

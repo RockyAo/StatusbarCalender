@@ -74,12 +74,54 @@ final class AppState: ObservableObject {
 
     private var statusTimer: Timer?
 
+    // MARK: - 节假日远程数据
+
+    /// 节假日数据版本号：远程更新成功后 +1，驱动日历网格重算
+    @Published var holidayTick = 0
+    @Published var holidayStatus = ""
+    @Published var holidayCustomURL = UserDefaults.standard.string(forKey: HolidayDatabase.customURLKey) ?? "" {
+        didSet { UserDefaults.standard.set(holidayCustomURL, forKey: HolidayDatabase.customURLKey) }
+    }
+
+    private static let holidayTimeFormatter: DateFormatter = {
+        let f = DateFormatter()
+        f.dateFormat = "yyyy-MM-dd HH:mm"
+        return f
+    }()
+
+    /// 上次远程更新时间（设置页展示）；nil = 从未
+    var holidayLastUpdateText: String {
+        guard let date = UserDefaults.standard.object(forKey: HolidayDatabase.lastUpdateKey) as? Date else {
+            return "从未（使用内置数据）"
+        }
+        return Self.holidayTimeFormatter.string(from: date)
+    }
+
     // MARK: - 初始化
 
     init() {
         refreshStatusText()
         resetStatusTimer()
         if launchAtLogin { syncLoginItem() }
+        Task { await autoRefreshHolidays() }
+    }
+
+    /// 距上次成功拉取超过 24 小时才自动刷新（静默）
+    private func autoRefreshHolidays() async {
+        let last = UserDefaults.standard.object(forKey: HolidayDatabase.lastUpdateKey) as? Date
+        if let last, Date().timeIntervalSince(last) < 24 * 3600 { return }
+        await checkHolidayUpdates(showStatus: false)
+    }
+
+    func checkHolidayUpdates(showStatus: Bool = true) async {
+        if showStatus { holidayStatus = "正在检查更新…" }
+        if let error = await HolidayDatabase.shared.fetchRemote() {
+            holidayStatus = "更新失败：\(error)"
+        } else {
+            HolidayDatabase.shared.reload()
+            holidayTick += 1
+            holidayStatus = "已更新至最新"
+        }
     }
 
     /// 显示时间时每秒刷新，否则 30 秒

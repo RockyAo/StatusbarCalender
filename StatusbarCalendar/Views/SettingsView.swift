@@ -47,12 +47,30 @@ struct SettingsView: View {
                     Toggle("显示系统日历事件", isOn: $app.showEvents)
                 }
 
+                Section("节假日数据") {
+                    LabeledContent("上次更新", value: app.holidayLastUpdateText)
+                    HStack {
+                        Button("检查更新") {
+                            Task { await app.checkHolidayUpdates() }
+                        }
+                        .disabled(app.holidayStatus == "正在检查更新…")
+                        if !app.holidayStatus.isEmpty {
+                            Text(app.holidayStatus)
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                                .lineLimit(1)
+                        }
+                    }
+                    TextField("自定义数据源 URL（可选，如 Gitee 镜像）", text: $app.holidayCustomURL)
+                        .font(.system(size: 11, design: .monospaced))
+                }
+
                 Section("关于") {
                     LabeledContent("版本", value: "2.0")
                 }
             }
             .formStyle(.grouped)
         }
-        .frame(width: 320, height: 470)
+        .frame(width: 320, height: 560)
     }
 }

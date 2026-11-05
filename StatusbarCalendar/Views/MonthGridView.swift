@@ -7,6 +7,8 @@ struct MonthGridView: View {
     private let columns = Array(repeating: GridItem(.flexible(), spacing: 0), count: 7)
 
     var body: some View {
+        // 引用 holidayTick：节假日远程数据更新后触发网格重算
+        let _ = app.holidayTick
         let days = CalendarManager.monthGrid(
             for: app.currentMonth, weekStartsOnMonday: app.weekStartsOnMonday)
 
