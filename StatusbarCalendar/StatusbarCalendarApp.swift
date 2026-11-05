@@ -1,17 +1,12 @@
 import SwiftUI
 
-/// 菜单栏日历：菜单栏实时日期 + 农历，点击弹出月历面板（设置页内嵌于面板）
+/// 菜单栏日历：NSStatusItem + NSPopover 承载 SwiftUI 面板（见 AppDelegate）
 @main
 struct StatusbarCalendarApp: App {
-    @StateObject private var app = AppState()
+    @NSApplicationDelegateAdaptor(AppDelegate.self) private var delegate
 
     var body: some Scene {
-        MenuBarExtra {
-            CalendarPopoverView()
-                .environmentObject(app)
-        } label: {
-            Text(app.statusText)
-        }
-        .menuBarExtraStyle(.window)
+        // 菜单栏应用无主窗口；占位 Scene 仅为满足 SwiftUI App 生命周期
+        Settings { EmptyView() }
     }
 }

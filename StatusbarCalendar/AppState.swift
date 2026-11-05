@@ -6,6 +6,9 @@ import SwiftUI
 @MainActor
 final class AppState: ObservableObject {
 
+    /// AppDelegate 与 SwiftUI 视图共享的唯一实例
+    static let shared = AppState()
+
     enum StatusBarMode: String, CaseIterable, Identifiable {
         case dateOnly = "仅日期"
         case dateAndLunar = "日期 + 农历"
