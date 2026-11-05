@@ -1,16 +1,23 @@
 import SwiftUI
 
-/// 菜单栏弹出的主面板：头部导航 + 月历 + 当日详情 + 事件列表
+/// 菜单栏弹出的主面板：头部导航 + 月历 + 当日详情 + 事件列表（设置页内嵌切换）
 struct CalendarPopoverView: View {
     @EnvironmentObject var app: AppState
+    @State private var showSettings = false
 
     var body: some View {
         VStack(spacing: 8) {
-            header
-            MonthGridView()
-            dayDetail
-            if app.showEvents {
-                EventsListView()
+            if showSettings {
+                SettingsView(onDone: {
+                    withAnimation(.easeInOut(duration: 0.15)) { showSettings = false }
+                })
+            } else {
+                header
+                MonthGridView()
+                dayDetail
+                if app.showEvents {
+                    EventsListView()
+                }
             }
         }
         .padding(.vertical, 10)
@@ -37,21 +44,18 @@ struct CalendarPopoverView: View {
 
             navButton("chevron.right") { app.move(byMonths: 1) }
             Divider().frame(height: 14)
-            SettingsLink {
-                Image(systemName: "gearshape")
-                    .font(.system(size: 12))
-                    .foregroundStyle(.secondary)
+            navButton("gearshape", iconSize: 12) {
+                withAnimation(.easeInOut(duration: 0.15)) { showSettings = true }
             }
-            .buttonStyle(.plain)
             .padding(.horizontal, 4)
         }
         .padding(.horizontal, 12)
     }
 
-    private func navButton(_ icon: String, action: @escaping () -> Void) -> some View {
+    private func navButton(_ icon: String, iconSize: CGFloat = 11, action: @escaping () -> Void) -> some View {
         Button(action: action) {
             Image(systemName: icon)
-                .font(.system(size: 11, weight: .semibold))
+                .font(.system(size: iconSize, weight: .semibold))
                 .foregroundStyle(.secondary)
                 .frame(width: 24, height: 24)
                 .contentShape(Rectangle())
