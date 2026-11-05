@@ -74,7 +74,7 @@ struct CalendarPopoverView: View {
             if let festival {
                 Text(festival)
                     .font(.system(size: 11, weight: .medium))
-                    .foregroundStyle(.red)
+                    .foregroundStyle(Color(nsColor: .systemRed))
             }
             Text(LunarCalendar.fullDescription(of: date))
                 .font(.system(size: 11))
@@ -90,7 +90,7 @@ struct CalendarPopoverView: View {
         .padding(.vertical, 6)
         .background(
             RoundedRectangle(cornerRadius: 8, style: .continuous)
-                .fill(Color.primary.opacity(0.04))
+                .fill(Color.primary.opacity(0.06))
         )
         .padding(.horizontal, 12)
     }

@@ -18,14 +18,14 @@ struct DayCellView: View {
     @Environment(\.colorScheme) private var colorScheme
 
     var body: some View {
-        VStack(spacing: 1) {
+        VStack(spacing: 1.5) {
             Text("\(info.day)")
                 .font(.system(size: 14, weight: info.isToday ? .semibold : .regular))
                 .foregroundStyle(dayColor.opacity(info.isInMonth ? 1 : 0.3))
             Text(subLabel)
-                .font(.system(size: 9.5))
+                .font(.system(size: 10, weight: isRedDay ? .medium : .regular))
                 .lineLimit(1)
-                .minimumScaleFactor(0.7)
+                .minimumScaleFactor(0.75)
                 .foregroundStyle(subColor.opacity(info.isInMonth ? 1 : 0.3))
         }
         .frame(maxWidth: .infinity, minHeight: 40)
@@ -45,19 +45,19 @@ struct DayCellView: View {
         return ""
     }
 
-    // MARK: - 颜色
+    // MARK: - 颜色（systemRed/systemOrange 随深浅色外观自适应）
 
     private var dayColor: Color {
         if info.isToday { return .white }
-        if isRedDay { return .red }
-        if info.isWeekend { return .red.opacity(0.65) }
+        if isRedDay { return Color(nsColor: .systemRed) }
+        if info.isWeekend { return Color(nsColor: .systemRed).opacity(0.7) }
         return .primary
     }
 
     private var subColor: Color {
-        if info.isToday { return .white.opacity(0.85) }
-        if isRedDay { return .red.opacity(0.9) }
-        if info.kind == .swappedWorkday { return .orange }
+        if info.isToday { return .white.opacity(0.9) }
+        if isRedDay { return Color(nsColor: .systemRed) }
+        if info.kind == .swappedWorkday { return Color(nsColor: .systemOrange) }
         return .secondary
     }
 
@@ -86,7 +86,9 @@ struct DayCellView: View {
                 .foregroundStyle(.white)
                 .padding(.horizontal, 2.5)
                 .frame(height: 10)
-                .background(Capsule().fill(info.kind == .statutoryOff ? Color.green : Color.orange))
+                .background(Capsule().fill(
+                    info.kind == .statutoryOff ? Color(nsColor: .systemGreen) : Color(nsColor: .systemOrange)
+                ))
                 .offset(x: 1)
         }
     }

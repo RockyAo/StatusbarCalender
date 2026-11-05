@@ -16,7 +16,7 @@ struct MonthGridView: View {
                 ForEach(Array(CalendarManager.weekdaySymbols(weekStartsOnMonday: app.weekStartsOnMonday).enumerated()), id: \.offset) { index, symbol in
                     Text(symbol)
                         .font(.system(size: 10, weight: .medium))
-                        .foregroundStyle(index == 0 || index == 6 ? Color.red.opacity(0.7) : Color.secondary)
+                        .foregroundStyle(index == 0 || index == 6 ? Color(nsColor: .systemRed).opacity(0.8) : Color.secondary)
                         .frame(maxWidth: .infinity)
                 }
             }
