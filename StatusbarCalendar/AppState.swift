@@ -9,12 +9,9 @@ final class AppState: ObservableObject {
     /// AppDelegate 与 SwiftUI 视图共享的唯一实例
     static let shared = AppState()
 
-    enum StatusBarMode: String, CaseIterable, Identifiable {
-        case dateOnly = "仅日期"
-        case dateAndLunar = "日期 + 农历"
-        case dateAndWeekday = "日期 + 星期"
-        var id: String { rawValue }
-    }
+    private static let weekdayNames = ["日", "一", "二", "三", "四", "五", "六"]
+    private static let time24: DateFormatter = { let f = DateFormatter(); f.dateFormat = "HH:mm"; return f }()
+    private static let time12: DateFormatter = { let f = DateFormatter(); f.dateFormat = "h:mm a"; return f }()
 
     // MARK: - 视图状态
 
@@ -42,11 +39,29 @@ final class AppState: ObservableObject {
     @Published var weekStartsOnMonday: Bool = Defaults.bool(forKey: .weekStartsOnMonday, default: true) {
         didSet { Defaults.set(weekStartsOnMonday, forKey: .weekStartsOnMonday) }
     }
-    @Published var statusBarModeRaw: String = Defaults.string(forKey: .statusBarMode, default: AppState.StatusBarMode.dateAndLunar.rawValue) {
+    // MARK: - 菜单栏文字配置（年份 / 月日 / 星期 / 农历 / 时间 独立开关）
+
+    @Published var statusShowYear = Defaults.bool(forKey: .statusShowYear, default: false) {
+        didSet { Defaults.set(statusShowYear, forKey: .statusShowYear); refreshStatusText() }
+    }
+    @Published var statusShowDate = Defaults.bool(forKey: .statusShowDate, default: true) {
+        didSet { Defaults.set(statusShowDate, forKey: .statusShowDate); refreshStatusText() }
+    }
+    @Published var statusShowWeekday = Defaults.bool(forKey: .statusShowWeekday, default: false) {
+        didSet { Defaults.set(statusShowWeekday, forKey: .statusShowWeekday); refreshStatusText() }
+    }
+    @Published var statusShowLunar = Defaults.bool(forKey: .statusShowLunar, default: true) {
+        didSet { Defaults.set(statusShowLunar, forKey: .statusShowLunar); refreshStatusText() }
+    }
+    @Published var statusShowTime = Defaults.bool(forKey: .statusShowTime, default: false) {
         didSet {
-            Defaults.set(statusBarModeRaw, forKey: .statusBarMode)
+            Defaults.set(statusShowTime, forKey: .statusShowTime)
             refreshStatusText()
+            resetStatusTimer()
         }
+    }
+    @Published var statusUse24Hour = Defaults.bool(forKey: .statusUse24Hour, default: true) {
+        didSet { Defaults.set(statusUse24Hour, forKey: .statusUse24Hour); refreshStatusText() }
     }
     @Published var launchAtLogin: Bool = Defaults.bool(forKey: .launchAtLogin, default: false) {
         didSet {
@@ -55,22 +70,25 @@ final class AppState: ObservableObject {
         }
     }
 
-    var statusBarMode: StatusBarMode {
-        StatusBarMode(rawValue: statusBarModeRaw) ?? .dateAndLunar
-    }
-
     let eventStore = EventStoreManager()
 
-    private var minuteTimer: Timer?
+    private var statusTimer: Timer?
 
     // MARK: - 初始化
 
     init() {
         refreshStatusText()
-        minuteTimer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { [weak self] _ in
+        resetStatusTimer()
+        if launchAtLogin { syncLoginItem() }
+    }
+
+    /// 显示时间时每秒刷新，否则 30 秒
+    private func resetStatusTimer() {
+        statusTimer?.invalidate()
+        let interval: TimeInterval = statusShowTime ? 1 : 30
+        statusTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { [weak self] _ in
             Task { @MainActor in self?.refreshStatusText() }
         }
-        if launchAtLogin { syncLoginItem() }
     }
 
     // MARK: - 月份导航
@@ -119,26 +137,28 @@ final class AppState: ObservableObject {
         }
     }
 
-    // MARK: - 菜单栏文字
+    // MARK: - 菜单栏文字（年份 / 月日 / 星期 / 农历 / 时间 自由组合）
 
     func refreshStatusText() {
         let now = Date()
-        let cal = Calendar.current
-        let c = cal.dateComponents([.month, .day], from: now)
-        let datePart = "\(c.month ?? 0)月\(c.day ?? 0)日"
-        switch statusBarMode {
-        case .dateOnly:
-            statusText = datePart
-        case .dateAndWeekday:
-            let symbol = cal.veryShortWeekdaySymbols[cal.component(.weekday, from: now) - 1]
-            statusText = "\(datePart) 周\(symbol)"
-        case .dateAndLunar:
-            if let festival = LunarCalendar.festival(on: now) {
-                statusText = "\(datePart) \(festival)"
-            } else {
-                statusText = "\(datePart) \(LunarCalendar.tileLabel(of: now))"
-            }
+        let c = Calendar.current.dateComponents([.year, .month, .day, .weekday], from: now)
+
+        var datePart = ""
+        if statusShowYear, let year = c.year { datePart += "\(year)年" }
+        if statusShowDate { datePart += "\(c.month ?? 0)月\(c.day ?? 0)日" }
+
+        var parts: [String] = []
+        if !datePart.isEmpty { parts.append(datePart) }
+        if statusShowWeekday, let weekday = c.weekday {
+            parts.append("周\(Self.weekdayNames[weekday - 1])")
         }
+        if statusShowLunar {
+            parts.append(LunarCalendar.festival(on: now) ?? LunarCalendar.tileLabel(of: now))
+        }
+        if statusShowTime {
+            parts.append((statusUse24Hour ? Self.time24 : Self.time12).string(from: now))
+        }
+        statusText = parts.joined(separator: " ")
     }
 
     // MARK: - 开机启动
@@ -166,7 +186,12 @@ private enum Defaults {
         case showHolidayBadge
         case showEvents
         case weekStartsOnMonday
-        case statusBarMode
+        case statusShowYear
+        case statusShowDate
+        case statusShowWeekday
+        case statusShowLunar
+        case statusShowTime
+        case statusUse24Hour
         case launchAtLogin
     }
 
@@ -177,14 +202,6 @@ private enum Defaults {
     }
 
     static func set(_ value: Bool, forKey key: Key) {
-        UserDefaults.standard.set(value, forKey: key.rawValue)
-    }
-
-    static func string(forKey key: Key, default defaultValue: String) -> String {
-        UserDefaults.standard.string(forKey: key.rawValue) ?? defaultValue
-    }
-
-    static func set(_ value: String, forKey key: Key) {
         UserDefaults.standard.set(value, forKey: key.rawValue)
     }
 }
