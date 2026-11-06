@@ -1,0 +1,11 @@
+# 对外服务拉取到的仓库内容；HTTPS 证书由 Caddy 自动申请续期
+# app 数据源地址即：
+#   https://<你的域名>/StatusbarCalendar/Resources/holidays.json
+holidays.example.com {
+	root * /srv/repo
+	file_server
+	header {
+		# 静态数据可长缓存，app 侧有手动刷新兜底
+		Cache-Control "public, max-age=3600"
+	}
+}

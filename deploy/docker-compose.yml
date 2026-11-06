@@ -1,0 +1,48 @@
+# 节假日数据服务：定时从 Gitee 拉取仓库 + Caddy 对外服务
+# 用法见 deploy/README.md。迁移新服务器时拷贝本目录即可。
+
+services:
+  sync:
+    image: alpine:3.20
+    restart: always
+    environment:
+      # 改成你的 Gitee 镜像地址（或任何国内可达的仓库地址）
+      - REPO_URL=${REPO_URL:-https://gitee.com/yourname/StatusbarCalender.git}
+      - PULL_INTERVAL=${PULL_INTERVAL:-6h}
+    volumes:
+      - repo:/srv/repo
+    entrypoint:
+      - sh
+      - -c
+      - |
+        set -eu
+        apk add --no-cache git ca-certificates >/dev/null
+        git config --global --add safe.directory /srv/repo
+        until [ -d /srv/repo/.git ]; do
+          rm -rf /srv/repo
+          git clone --depth 1 "$$REPO_URL" /srv/repo || sleep 60
+        done
+        echo "[sync] repo ready, pulling every $$PULL_INTERVAL"
+        while true; do
+          sleep "$$PULL_INTERVAL"
+          git -C /srv/repo pull --depth 1 origin main \
+            && echo "[sync] updated $$(date '+%F %T')" \
+            || echo "[sync] pull failed, keep old data"
+        done
+
+  web:
+    image: caddy:alpine
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - repo:/srv:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  repo:
+  caddy_data:
+  caddy_config:
